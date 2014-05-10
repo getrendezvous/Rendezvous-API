@@ -1,14 +1,15 @@
 /**
  * @author Rukmal Weerawarana
  *
- * @description Mongoose model for a user, and accompanying methods
+ * @description Schema for a 'holding' database for the user. Holds temporary
+ *              user objects until the point at which they have been verified
  */
 
 var mongoose = require('mongoose');
 var bcrypt = require('bcrypt');
 var SALT_WORK_FACTOR = 10;
 
-var userSchema = new mongoose.Schema({
+var userHoldSchema = new mongoose.Schema({
 	firstname: {
 		type: String,
 		required: true
@@ -67,10 +68,15 @@ var userSchema = new mongoose.Schema({
 		type: Array,
 		required: false,
 		default: []
+	},
+
+	authCode: {
+		type: Number,
+		required: true,
 	}
 });
 
-userSchema.pre('save', function (next) {
+userHoldSchema.pre('save', function (next) {
 	var user = this;
 	// If the password isn't modified, save as is
 	if (!user.isModified('password')) return next;
@@ -86,4 +92,4 @@ userSchema.pre('save', function (next) {
 	});
 });
 
-module.exports = mongoose.model('User', userSchema);
+module.exports = mongoose.model('Hold', userHoldSchema);
