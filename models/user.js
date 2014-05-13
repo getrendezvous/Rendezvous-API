@@ -30,15 +30,14 @@ var userSchema = new mongoose.Schema({
 		unique: true
 	},
 
+	facebook_id: {
+		type: String,
+		unique: true
+	},
+
 	phone: {
 		type: Number,
 		required: true
-	},
-
-	email: {
-		type: String,
-		required: true,
-		unique: true
 	},
 
 	picture: {

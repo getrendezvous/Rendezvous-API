@@ -25,6 +25,11 @@ var userHoldSchema = new mongoose.Schema({
 		required: true
 	},
 
+	facebook_id: {
+		type: String,
+		unique: true
+	},
+
 	username: {
 		type: String,
 		required: true,
@@ -36,38 +41,9 @@ var userHoldSchema = new mongoose.Schema({
 		required: true
 	},
 
-	email: {
-		type: String,
-		required: true,
-		unique: true
-	},
-
 	picture: {
 		type: String,
 		required: false
-	},
-
-	account_status: {
-		type: Boolean,
-		required: true,
-		default: false
-	},
-
-	friends: {
-		type: Array,
-		required: false,
-		default: []
-	},
-
-	currentStatusID: {
-		type: String,
-		required: false
-	},
-
-	pastStatuses: {
-		type: Array,
-		required: false,
-		default: []
 	},
 
 	authCode: {
